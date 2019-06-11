@@ -30,9 +30,9 @@ const auth = createBasicAuth({
 });
 ```
 
-Each function exported by `@octokit/auth` returns an async `auth` function which might accept parameteters, depending on the strategy.
+Each function exported by `@octokit/auth` returns an async `auth` function.
 
-The `auth` function resolves with an authentication object which always have both a `headers` and a `query` object which have to be applied to a request for authentication.
+The `auth` function resolves with an authentication object which always has two keys: `headers` and `query`. Both objects can directly be applied to a request:
 
 ```js
 import { request } from "@octokit/request";
@@ -340,7 +340,7 @@ There are three possible results
         <code>string</code>
       </th>
       <td>
-        <code>"personal-access-token"</code>
+        <code>"token"</code>
       </td>
     </tr>
     <tr>
@@ -426,7 +426,7 @@ There are three possible results
         <code>string</code>
       </th>
       <td>
-        <code>"oauth-access-token"</code>
+        <code>"token"</code>
       </td>
     </tr>
     <tr>
@@ -517,13 +517,24 @@ There are three possible results
     </tr>
     <tr>
       <th>
-        <code>token</code>
+        <code>username</code>
       </th>
       <th>
         <code>string</code>
       </th>
       <td>
-        The base64-encoded <code>username:password</code> string
+        The decoded username
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>password</code>
+      </th>
+      <th>
+        <code>string</code>
+      </th>
+      <td>
+        The decoded password
       </td>
     </tr>
     <tr>
@@ -837,7 +848,7 @@ There are two possible results
         <code>string</code>
       </th>
       <td>
-        <code>"installation"</code>
+        <code>"token"</code>
       </td>
     </tr>
     <tr>
@@ -1080,7 +1091,7 @@ There are two possible results
         <code>string</code>
       </th>
       <td>
-        <code>"oauth"</code>
+        <code>"oauth-app"</code>
       </td>
     </tr>
     <tr>
@@ -1159,7 +1170,7 @@ There are two possible results
         <code>string</code>
       </th>
       <td>
-        <code>"oauth-access-token"</code>
+        <code>"token"</code>
       </td>
     </tr>
     <tr>
@@ -1211,86 +1222,35 @@ There are two possible results
 
 ## Token
 
-Authenticating using a token, which maybe be either a personal access token, an oauth access token, or an installation access token.
-
-### Usage
+Example
 
 ```js
 import { createTokenAuth } from "@octokit/auth";
+import { request } from "@octokit/request";
 
-const auth = createTokenAuth("secret123");
+(async () => {
+  const auth = createTokenAuth("1234567890abcdef1234567890abcdef12345678");
+  const authentication = await auth();
+  // {
+  //   type: 'token',
+  //   token: '1234567890abcdef1234567890abcdef12345678',
+  //   tokenType: 'oauth',
+  //   headers: {
+  //     authorization: 'token 1234567890abcdef1234567890abcdef12345678'
+  //   }
+  // }
 
-const authentication = await auth();
+  // `authentication.headers` can be directly passed to a request
+  const result = await request("GET /orgs/:org/repos", {
+    headers: authentication.headers,
+    org: "octokit",
+    type: "private"
+  });
+})();
 ```
 
-### Strategy options
+See [@octokit/auth-token](https://github.com/octokit/auth-token.js) for more details.
 
-The `token` strategy method accepts a single argument of type string, which is the token.
+## License
 
-### Auth options
-
-There are no options for token authentication.
-
-### Authentication object
-
-<table width="100%">
-  <thead align=left>
-    <tr>
-      <th width=150>
-        name
-      </th>
-      <th width=70>
-        type
-      </th>
-      <th>
-        description
-      </th>
-    </tr>
-  </thead>
-  <tbody align=left valign=top>
-    <tr>
-      <th>
-        <code>type</code>
-      </th>
-      <th>
-        <code>string</code>
-      </th>
-      <td>
-        <code>"token"</code>
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <code>token</code>
-      </th>
-      <th>
-        <code>string</code>
-      </th>
-      <td>
-        The provided token.
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <code>headers</code>
-      </th>
-      <th>
-        <code>object</code>
-      </th>
-      <td>
-        <code>{ authorization }</code> - value for the "Authorization" header.
-      </td>
-    </tr>
-    <tr>
-      <th>
-        <code>query</code>
-      </th>
-      <th>
-        <code>object</code>
-      </th>
-      <td>
-        <code>{}</code> - not used
-      </td>
-    </tr>
-  </tbody>
-</tbody>
+[MIT](LICENSE)
