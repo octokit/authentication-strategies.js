@@ -578,7 +578,45 @@ There are three possible results
 Example
 
 ```js
-// TBD
+import { request } from "@octokit/request";
+import { createAppAuth } from "@octokit/auth-app";
+
+const auth = createAppAuth({
+  id: 1,
+  privateKey: "-----BEGIN RSA PRIVATE KEY-----\n..."
+});
+
+(async () => {
+  // Retrieve JSON Web Token (JWT) to authenticate as app
+  const appAuthentication = await auth();
+  const { data: appDetails } = await request("GET /app", {
+    headers: appAuthentication.headers,
+    previews: ["machine-man"]
+  });
+
+  // Retrieve installation access token
+  const installationAuthentication = await auth({ installationId: 123 });
+  const { data: repositories } = await request(
+    "GET /installation/repositories",
+    {
+      headers: installationAuthentication.headers,
+      previews: ["machine-man"]
+    }
+  );
+
+  // Retrieve JSON Web Token (JWT) or installation access token based on request url
+  const authentication = await auth({
+    installationId: 123,
+    url: "/installation/repositories"
+  });
+  const { data: repositories } = await request(
+    "GET /installation/repositories",
+    {
+      headers: authentication.headers,
+      previews: ["machine-man"]
+    }
+  );
+})();
 ```
 
 See [@octokit/auth-app](https://github.com/octokit/auth-app.js) for more details.
