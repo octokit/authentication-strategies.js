@@ -605,17 +605,15 @@ const auth = createAppAuth({
   );
 
   // Retrieve JSON Web Token (JWT) or installation access token based on request url
+  const url = "/installation/repositories";
   const authentication = await auth({
     installationId: 123,
-    url: "/installation/repositories"
+    url
   });
-  const { data: repositories } = await request(
-    "GET /installation/repositories",
-    {
-      headers: authentication.headers,
-      previews: ["machine-man"]
-    }
-  );
+  const { data: repositories } = await request(url, {
+    headers: authentication.headers,
+    previews: ["machine-man"]
+  });
 })();
 ```
 
