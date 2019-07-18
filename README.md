@@ -197,28 +197,8 @@ See [@octokit/auth-oauth-app](https://github.com/octokit/auth-oauth-app.js#readm
 Example
 
 ```js
-import { createTokenAuth } from "@octokit/auth";
-import { request } from "@octokit/request";
-
-(async () => {
-  const auth = createTokenAuth("1234567890abcdef1234567890abcdef12345678");
-  const authentication = await auth();
-  // {
-  //   type: 'token',
-  //   token: '1234567890abcdef1234567890abcdef12345678',
-  //   tokenType: 'oauth',
-  //   headers: {
-  //     authorization: 'token 1234567890abcdef1234567890abcdef12345678'
-  //   }
-  // }
-
-  // `authentication.headers` can be directly passed to a request
-  const result = await request("GET /orgs/:org/repos", {
-    headers: authentication.headers,
-    org: "octokit",
-    type: "private"
-  });
-})();
+const auth = createTokenAuth("1234567890abcdef1234567890abcdef12345678");
+const { token, tokenType } = await auth();
 ```
 
 See [@octokit/auth-token](https://github.com/octokit/auth-token.js#readme) for more details.
