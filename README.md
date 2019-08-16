@@ -134,35 +134,30 @@ const auth = createAppAuth({
   privateKey: "-----BEGIN RSA PRIVATE KEY-----\n..."
 });
 
-(async () => {
-  // Retrieve JSON Web Token (JWT) to authenticate as app
-  const appAuthentication = await auth();
-  const { data: appDetails } = await request("GET /app", {
-    headers: appAuthentication.headers,
-    previews: ["machine-man"]
-  });
+// Retrieve JSON Web Token (JWT) to authenticate as app
+const appAuthentication = await auth();
+const { data: appDetails } = await request("GET /app", {
+  headers: appAuthentication.headers,
+  previews: ["machine-man"]
+});
 
-  // Retrieve installation access token
-  const installationAuthentication = await auth({ installationId: 123 });
-  const { data: repositories } = await request(
-    "GET /installation/repositories",
-    {
-      headers: installationAuthentication.headers,
-      previews: ["machine-man"]
-    }
-  );
+// Retrieve installation access token
+const installationAuthentication = await auth({ installationId: 123 });
+const { data: repositories } = await request("GET /installation/repositories", {
+  headers: installationAuthentication.headers,
+  previews: ["machine-man"]
+});
 
-  // Retrieve JSON Web Token (JWT) or installation access token based on request url
-  const url = "/installation/repositories";
-  const authentication = await auth({
-    installationId: 123,
-    url
-  });
-  const { data: repositories } = await request(url, {
-    headers: authentication.headers,
-    previews: ["machine-man"]
-  });
-})();
+// Retrieve JSON Web Token (JWT) or installation access token based on request url
+const url = "/installation/repositories";
+const authentication = await auth({
+  installationId: 123,
+  url
+});
+const { data: repositories } = await request(url, {
+  headers: authentication.headers,
+  previews: ["machine-man"]
+});
 ```
 
 See [@octokit/auth-app](https://github.com/octokit/auth-app.js#readme) for more details.
@@ -175,30 +170,28 @@ Example
 import { createOAuthAppAuth } from "@octokit/auth";
 import { request } from "@octokit/request";
 
-(async () => {
-  const auth = createOAuthAppAuth({
-    clientId,
-    clientSecret
-  });
+const auth = createOAuthAppAuth({
+  clientId,
+  clientSecret
+});
 
-  // Request private repos for "octokit" org using client ID/secret authentication
-  const appAuthentication = await auth({ url: "/orgs/:org/repos" });
-  const result = await request("GET /orgs/:org/repos", {
-    org: "octokit",
-    type: "private",
-    headers: appAuthentication.headers,
-    ...appAuthentication.query
-  });
+// Request private repos for "octokit" org using client ID/secret authentication
+const appAuthentication = await auth({ url: "/orgs/:org/repos" });
+const result = await request("GET /orgs/:org/repos", {
+  org: "octokit",
+  type: "private",
+  headers: appAuthentication.headers,
+  ...appAuthentication.query
+});
 
-  // Request private repos for "octokit" org using OAuth token authentication.
-  // "random123" is the authorization code from the web application flow, see https://git.io/fhd1D
-  const tokenAuthentication = await auth({ code: "random123" });
-  const result = await request("GET /orgs/:org/repos", {
-    org: "octokit",
-    type: "private",
-    headers: tokenAuthentication.headers
-  });
-})();
+// Request private repos for "octokit" org using OAuth token authentication.
+// "random123" is the authorization code from the web application flow, see https://git.io/fhd1D
+const tokenAuthentication = await auth({ code: "random123" });
+const result = await request("GET /orgs/:org/repos", {
+  org: "octokit",
+  type: "private",
+  headers: tokenAuthentication.headers
+});
 ```
 
 See [@octokit/auth-oauth-app](https://github.com/octokit/auth-oauth-app.js#readme) for more details.
