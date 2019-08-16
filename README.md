@@ -13,6 +13,7 @@ GitHub supports 4 authentication strategies. They are all implemented in `@octok
 - [GitHub App or installation authentication](#github-app-or-installation-authentication)
 - [OAuth app and OAuth access token authentication](#oauth-app-and-oauth-access-token-authentication)
 - [Token](#token)
+- [License](#license)
 
 <!-- tocstop -->
 
