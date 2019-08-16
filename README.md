@@ -51,7 +51,13 @@ const {
   createOAuthAppAuth,
   createTokenAuth
 } = require("@octokit/auth");
-// or: import { createBasicAuth, createAppAuth, createOAuthAppAuth, createTokenAuth } from "@octokit/auth";
+// or:
+// import {
+//   createBasicAuth,
+//   createAppAuth,
+//   createOAuthAppAuth,
+//   createTokenAuth
+// } from "@octokit/auth";
 ```
 
 </td></tr>
