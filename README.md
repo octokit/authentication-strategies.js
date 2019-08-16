@@ -12,8 +12,8 @@ GitHub supports 4 authentication strategies. They are all implemented in `@octok
 - [Basic and personal access token authentication](#basic-and-personal-access-token-authentication)
 - [GitHub App or installation authentication](#github-app-or-installation-authentication)
 - [OAuth app and OAuth access token authentication](#oauth-app-and-oauth-access-token-authentication)
-- [Token](#token)
-- [License](#license)
+- [Token Authentication](#token-authentication)
+- [GitHub Action authentication](#github-action-authentication)
 
 <!-- tocstop -->
 
@@ -33,7 +33,8 @@ Load `@octokit/auth` directly from [cdn.pika.dev](https://cdn.pika.dev)
     createBasicAuth,
     createAppAuth,
     createOAuthAppAuth,
-    createTokenAuth
+    createTokenAuth,
+    createActionAuth
   } from "https://cdn.pika.dev/@octokit/auth";
 </script>
 ```
@@ -199,7 +200,7 @@ import { request } from "@octokit/request";
 
 See [@octokit/auth-oauth-app](https://github.com/octokit/auth-oauth-app.js#readme) for more details.
 
-## Token
+## Token authentication
 
 Example
 
@@ -209,6 +210,18 @@ const { token, tokenType } = await auth();
 ```
 
 See [@octokit/auth-token](https://github.com/octokit/auth-token.js#readme) for more details.
+
+## GitHub Action authentication
+
+Example
+
+```js
+// expects process.env.GITHUB_ACTION and process.env.GITHUB_TOKEN to be set
+const auth = createActionAuth();
+const { token } = await auth();
+```
+
+See [@octokit/auth-action](https://github.com/octokit/auth-action.js#readme) for more details.
 
 ## License
 
