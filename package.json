@@ -1,0 +1,77 @@
+{
+  "name": "@octokit/auth",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.0-development",
+  "description": "GitHub API authentication library for browsers and Node.js",
+  "scripts": {
+    "build": "pika build",
+    "test": "jest --coverage",
+    "semantic-release": "semantic-release"
+  },
+  "repository": "https://github.com/octokit/auth.js",
+  "keywords": [
+    "github",
+    "octokit",
+    "authentication",
+    "api"
+  ],
+  "author": "Gregor Martynus (https://github.com/gr2m)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/octokit/auth.js/issues"
+  },
+  "homepage": "https://github.com/octokit/auth.js#readme",
+  "dependencies": {
+    "@octokit/auth-action": "^1.0.1",
+    "@octokit/auth-app": "^1.2.2",
+    "@octokit/auth-basic": "^1.0.1",
+    "@octokit/auth-oauth-app": "^2.0.1",
+    "@octokit/auth-token": "^2.0.2"
+  },
+  "devDependencies": {
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.6.0",
+    "@pika/plugin-ts-standard-pkg": "^0.6.0",
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "semantic-release": "^15.13.24",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.1"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    }
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-node"
+      ]
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./pkg"
+        }
+      ]
+    ]
+  }
+}
