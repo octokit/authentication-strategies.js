@@ -1,5 +1,3 @@
-# 🚧 THIS LIBRARY IS WORK IN PROGRESS
-
 # auth.js
 
 > GitHub API authentication library for browsers and Node.js
