@@ -89,7 +89,7 @@ The `auth` function resolves with an authentication object. If multiple authenti
 const { token } = await auth({ type: "token" });
 ```
 
-Additionally, `auth.hook()` can be used to directly hook into [`@octokit/request`](https://github.com/octokit/request.js#readme).
+Additionally, `auth.hook()` can be used to directly hook into [`@octokit/request`](https://github.com/octokit/request.js#readme). If multiple authentication types are supported, the right authentication type will be applied automatically based on the request URL.
 
 ```js
 const requestWithAuth = request.defaults({
