@@ -22,9 +22,6 @@ jobs:
       script: npm test
     - node_js: 12
       script: npm test
-    - node_js: lts/*
-      env: build test
-      script: npm run build
 
     # release stage: run semantic release & update the docs
     - stage: release
