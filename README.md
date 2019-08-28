@@ -101,6 +101,259 @@ const requestWithAuth = request.defaults({
 const { data: authorizations } = await requestWithAuth("GET /authorizations");
 ```
 
+## Comparison
+
+<table>
+  <thead align=left valign=top>
+    <tr>
+      <th>Module</th>
+      <th>Strategy Options</th>
+      <th>Auth Options</th>
+      <th colspan=3>Authentication objects</th>
+    </tr>
+</thead>
+<tbody align=left valign=top><tr><td>
+
+`@octokit/auth-token`
+
+</td><td>
+
+```
+token
+```
+
+</td><td>
+
+```
+-
+```
+
+</td><td colspan=3>
+
+```
+{
+  type: "token",
+  token: "secret123",
+  tokenType, "oauth" // or "installation"
+}
+```
+
+</td></tr>
+<tr><td>
+
+`@octokit/auth-basic`
+
+</td><td>
+
+```
+{
+  username*,
+  password*,
+  on2Fa*,
+  token,
+  request
+}
+```
+
+</td><td>
+
+```
+{
+  type*, // "basic" or "token"
+  refresh
+}
+```
+
+</td><td>
+
+```
+{
+  type: "basic"
+  username: "octocat",
+  password: "secret",
+  credentials: "b2N0b2NhdDpzZWNyZXQ=",
+  totp: "123456"
+}
+```
+
+</td><td>
+
+```
+{
+  type: "token"
+  tokenType: "pat",
+  token: "secret123",
+  id: 123,
+  username: "octocat",
+  scopes: []
+}
+```
+
+</td><td>
+
+```
+{
+  type: "token"
+  tokenType: "oauth",
+  token: "secret123",
+  id: 123,
+  appClientId: "abc123",
+  username: "octocat",
+  scopes: []
+}
+```
+
+</td></tr>
+<tr><td>
+
+`@octokit/auth-app`
+
+</td><td>
+
+```
+{
+  id*,
+  privateKey*,
+  installationId,
+  cache,
+  request
+}
+```
+
+</td><td>
+
+```
+{
+  type*, // "app" or "installation"
+  installationId,
+  repositoryIds,
+  permissions,
+  refresh
+}
+```
+
+</td><td>
+
+```
+{
+  type: "app",
+  token: "abc.def.1234",
+  appId: 123,
+  expriseAt: "2019-06-11T22:22:34Z"
+}
+```
+
+</td><td colspan=2>
+
+```
+{
+  type: "token",
+  tokenType: "installation",
+  token: "v1.secret123",
+  installationId: 1234,
+  expriseAt: "2019-06-11T22:22:34Z",
+  repositoryIds: [12345],
+  permissions: {
+    single_file: 'write'
+  },
+  singleFileName: '.github/myapp.yml'
+}
+```
+
+</td></tr>
+<tr><td>
+
+`@octokit/auth-oauth-app`
+
+</td><td>
+
+```
+{
+  clientId*,
+  clientSecret*,
+  code,
+  redirectUrl,
+  state,
+  request
+}
+```
+
+</td><td>
+
+```
+{
+  type*, // "oauth-app" or "token"
+  url
+}
+```
+
+</td><td>
+
+```
+{
+  type: "oauth-app",
+  clientId: "abc123",
+  clientSecret: "abc123secret",
+  headers: {},
+  query: {
+    clientId: "abc123",
+    clientSecret: "abc123secret"
+  }
+}
+```
+
+</td><td colspan=2>
+
+```
+{
+  type: "token",
+  tokenType: "oauth",
+  token: "123secret",
+  scopes: []
+}
+```
+
+</td></tr>
+<tr><td>
+
+`@octokit/auth-action`
+
+</td><td>
+
+```
+-
+```
+
+</td><td>
+
+```
+-
+```
+
+</td><td colspan=3>
+
+```
+{
+  type: "token",
+  tokenType: "installation",
+  token: "v1.123secret"
+}
+```
+
+</td></tr></tbody>
+</table>
+
+## Token authentication
+
+Example
+
+```js
+const auth = createTokenAuth("1234567890abcdef1234567890abcdef12345678");
+const { token, tokenType } = await auth();
+```
+
+See [@octokit/auth-token](https://github.com/octokit/auth-token.js#readme) for more details.
+
 ## Basic and personal access token authentication
 
 Example
@@ -161,17 +414,6 @@ const tokenAuthentication = await auth({ type: "token" });
 ```
 
 See [@octokit/auth-oauth-app](https://github.com/octokit/auth-oauth-app.js#readme) for more details.
-
-## Token authentication
-
-Example
-
-```js
-const auth = createTokenAuth("1234567890abcdef1234567890abcdef12345678");
-const { token, tokenType } = await auth();
-```
-
-See [@octokit/auth-token](https://github.com/octokit/auth-token.js#readme) for more details.
 
 ## GitHub Action authentication
 
