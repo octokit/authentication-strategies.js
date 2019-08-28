@@ -11,10 +11,11 @@ GitHub supports 4 authentication strategies. They are all implemented in `@octok
 <!-- toc -->
 
 - [Example usage](#example-usage)
+- [Comparison](#comparison)
+- [Token authentication](#token-authentication)
 - [Basic and personal access token authentication](#basic-and-personal-access-token-authentication)
 - [GitHub App or installation authentication](#github-app-or-installation-authentication)
 - [OAuth app and OAuth access token authentication](#oauth-app-and-oauth-access-token-authentication)
-- [Token authentication](#token-authentication)
 - [GitHub Action authentication](#github-action-authentication)
 - [License](#license)
 
