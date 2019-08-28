@@ -126,37 +126,15 @@ See [`@octokit/auth-basic`](https://github.com/octokit/auth-basic.js#readme) for
 Example
 
 ```js
-import { request } from "@octokit/request";
-import { createAppAuth } from "@octokit/auth-app";
-
 const auth = createAppAuth({
   id: 1,
   privateKey: "-----BEGIN RSA PRIVATE KEY-----\n..."
 });
 
-// Retrieve JSON Web Token (JWT) to authenticate as app
-const appAuthentication = await auth();
-const { data: appDetails } = await request("GET /app", {
-  headers: appAuthentication.headers,
-  previews: ["machine-man"]
-});
-
-// Retrieve installation access token
-const installationAuthentication = await auth({ installationId: 123 });
-const { data: repositories } = await request("GET /installation/repositories", {
-  headers: installationAuthentication.headers,
-  previews: ["machine-man"]
-});
-
-// Retrieve JSON Web Token (JWT) or installation access token based on request url
-const url = "/installation/repositories";
-const authentication = await auth({
-  installationId: 123,
-  url
-});
-const { data: repositories } = await request(url, {
-  headers: authentication.headers,
-  previews: ["machine-man"]
+const appAuthentication = await auth({ type: "auth" });
+const installationAuthentication = await auth({
+  type: "installation",
+  installationId: 123
 });
 ```
 
@@ -167,31 +145,17 @@ See [@octokit/auth-app](https://github.com/octokit/auth-app.js#readme) for more 
 Example
 
 ```js
-import { createOAuthAppAuth } from "@octokit/auth";
-import { request } from "@octokit/request";
-
 const auth = createOAuthAppAuth({
-  clientId,
-  clientSecret
+  clientId: "1234567890abcdef1234",
+  clientSecret: "1234567890abcdef1234567890abcdef12345678",
+  code: "random123" // code from OAuth web flow, see https://git.io/fhd1D
 });
 
-// Request private repos for "octokit" org using client ID/secret authentication
-const appAuthentication = await auth({ url: "/orgs/:org/repos" });
-const result = await request("GET /orgs/:org/repos", {
-  org: "octokit",
-  type: "private",
-  headers: appAuthentication.headers,
-  ...appAuthentication.query
+const appAuthentication = await auth({
+  type: "oauth-app",
+  url: "/orgs/:org/repos"
 });
-
-// Request private repos for "octokit" org using OAuth token authentication.
-// "random123" is the authorization code from the web application flow, see https://git.io/fhd1D
-const tokenAuthentication = await auth({ code: "random123" });
-const result = await request("GET /orgs/:org/repos", {
-  org: "octokit",
-  type: "private",
-  headers: tokenAuthentication.headers
-});
+const tokenAuthentication = await auth({ type: "token" });
 ```
 
 See [@octokit/auth-oauth-app](https://github.com/octokit/auth-oauth-app.js#readme) for more details.
