@@ -25,7 +25,7 @@
   "homepage": "https://github.com/octokit/auth.js#readme",
   "dependencies": {
     "@octokit/auth-action": "^1.0.1",
-    "@octokit/auth-app": "^1.2.2",
+    "@octokit/auth-app": "^2.0.0",
     "@octokit/auth-basic": "^1.0.1",
     "@octokit/auth-oauth-app": "^2.0.1",
     "@octokit/auth-token": "^2.0.2"
