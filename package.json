@@ -23,22 +23,27 @@
     "url": "https://github.com/octokit/auth.js/issues"
   },
   "homepage": "https://github.com/octokit/auth.js#readme",
+  "browser": {
+    "@octokit/auth-action": "./pkg/dist-src/auth-action-browser.js"
+  },
   "dependencies": {
     "@octokit/auth-action": "^1.0.1",
-    "@octokit/auth-app": "^2.0.0",
+    "@octokit/auth-app": "^2.1.0",
     "@octokit/auth-basic": "^1.0.1",
-    "@octokit/auth-oauth-app": "^2.0.1",
+    "@octokit/auth-oauth-app": "^2.0.2",
     "@octokit/auth-token": "^2.0.2"
   },
   "devDependencies": {
+    "@gr2m/pika-plugin-build-web": "^0.6.0-issue-84.2",
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.6.0",
     "@pika/plugin-ts-standard-pkg": "^0.6.0",
     "@types/jest": "^24.0.13",
     "jest": "^24.8.0",
+    "rollup-plugin-commonjs": "^10.1.0",
     "semantic-release": "^15.13.24",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.5.1"
+    "typescript": "^3.6.2"
   },
   "jest": {
     "preset": "ts-jest",
@@ -58,6 +63,9 @@
       ],
       [
         "@pika/plugin-build-node"
+      ],
+      [
+        "@gr2m/pika-plugin-build-web"
       ]
     ]
   },
