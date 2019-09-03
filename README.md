@@ -37,8 +37,7 @@ Load `@octokit/auth` directly from [cdn.pika.dev](https://cdn.pika.dev)
     createBasicAuth,
     createAppAuth,
     createOAuthAppAuth,
-    createTokenAuth,
-    createActionAuth
+    createTokenAuth
   } from "https://cdn.pika.dev/@octokit/auth";
 </script>
 ```
