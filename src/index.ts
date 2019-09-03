@@ -1,13 +1,5 @@
-import { createBasicAuth } from "@octokit/auth-basic";
-import { createAppAuth } from "@octokit/auth-app";
-import { createOAuthAppAuth } from "@octokit/auth-oauth-app";
-import { createTokenAuth } from "@octokit/auth-token";
-import { createActionAuth } from "@octokit/auth-action";
-
-export {
-  createBasicAuth,
-  createAppAuth,
-  createOAuthAppAuth,
-  createTokenAuth,
-  createActionAuth
-};
+export { createBasicAuth } from "@octokit/auth-basic";
+export { createAppAuth } from "@octokit/auth-app";
+export { createOAuthAppAuth } from "@octokit/auth-oauth-app";
+export { createTokenAuth } from "@octokit/auth-token";
+export { createActionAuth } from "@octokit/auth-action";
