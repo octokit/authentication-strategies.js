@@ -4,7 +4,7 @@
 
 [![@latest](https://img.shields.io/npm/v/@octokit/auth.svg)](https://www.npmjs.com/package/@octokit/auth)
 [![Build Status](https://github.com/octokit/auth.js/workflows/Test/badge.svg)](https://github.com/octokit/auth.js/actions?query=workflow%3ATest)
-[![Greenkeeper](https://badges.greenkeeper.io/octokit/auth.js.svg)](https://greenkeeper.io/)
+
 
 GitHub supports 4 authentication strategies. They are all implemented in `@octokit/auth`.
 
