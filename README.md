@@ -75,7 +75,7 @@ const {
 const auth = createBasicAuth({
   username: "monatheoctocat",
   password: "secret",
-  on2fa() {
+  on2Fa() {
     return prompt("Two-factor authentication Code:");
   }
 });
