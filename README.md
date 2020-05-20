@@ -4,7 +4,6 @@
 
 [![@latest](https://img.shields.io/npm/v/@octokit/auth.svg)](https://www.npmjs.com/package/@octokit/auth)
 [![Build Status](https://github.com/octokit/auth.js/workflows/Test/badge.svg)](https://github.com/octokit/auth.js/actions?query=workflow%3ATest)
-[![Greenkeeper](https://badges.greenkeeper.io/octokit/auth.js.svg)](https://greenkeeper.io/)
 
 GitHub supports 4 authentication strategies. They are all implemented in `@octokit/auth`.
 
@@ -37,7 +36,7 @@ Load `@octokit/auth` directly from [cdn.pika.dev](https://cdn.pika.dev)
     createBasicAuth,
     createAppAuth,
     createOAuthAppAuth,
-    createTokenAuth
+    createTokenAuth,
   } from "https://cdn.pika.dev/@octokit/auth";
 </script>
 ```
@@ -55,7 +54,7 @@ const {
   createAppAuth,
   createOAuthAppAuth,
   createTokenAuth,
-  createActionAuth
+  createActionAuth,
 } = require("@octokit/auth");
 // or:
 // import {
@@ -77,7 +76,7 @@ const auth = createBasicAuth({
   password: "secret",
   on2Fa() {
     return prompt("Two-factor authentication Code:");
-  }
+  },
 });
 ```
 
@@ -94,8 +93,8 @@ Additionally, `auth.hook()` can be used to directly hook into [`@octokit/request
 ```js
 const requestWithAuth = request.defaults({
   request: {
-    hook: auth.hook
-  }
+    hook: auth.hook,
+  },
 });
 
 const { data: authorizations } = await requestWithAuth("GET /authorizations");
@@ -365,12 +364,12 @@ const auth = createBasicAuth({
   async on2Fa() {
     // prompt user for the one-time password retrieved via SMS or authenticator app
     return prompt("Two-factor authentication Code:");
-  }
+  },
 });
 
 const { token } = await auth();
 const { totp } = await auth({
-  type: "basic"
+  type: "basic",
 });
 ```
 
@@ -383,13 +382,13 @@ Example
 ```js
 const auth = createAppAuth({
   id: 1,
-  privateKey: "-----BEGIN RSA PRIVATE KEY-----\n..."
+  privateKey: "-----BEGIN RSA PRIVATE KEY-----\n...",
 });
 
 const appAuthentication = await auth({ type: "auth" });
 const installationAuthentication = await auth({
   type: "installation",
-  installationId: 123
+  installationId: 123,
 });
 ```
 
@@ -403,12 +402,12 @@ Example
 const auth = createOAuthAppAuth({
   clientId: "1234567890abcdef1234",
   clientSecret: "1234567890abcdef1234567890abcdef12345678",
-  code: "random123" // code from OAuth web flow, see https://git.io/fhd1D
+  code: "random123", // code from OAuth web flow, see https://git.io/fhd1D
 });
 
 const appAuthentication = await auth({
   type: "oauth-app",
-  url: "/orgs/:org/repos"
+  url: "/orgs/:org/repos",
 });
 const tokenAuthentication = await auth({ type: "token" });
 ```
