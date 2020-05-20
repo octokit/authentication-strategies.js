@@ -1,22 +1,25 @@
 name: Test
-on:
+"on":
   push:
     branches:
-      - "greenkeeper/**"
+      - dependabot/npm_and_yarn/**
   pull_request:
-    types: [opened, synchronize]
-
+    types:
+      - opened
+      - synchronize
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [8, 10, 12]
-
+        node_version:
+          - 8
+          - 10
+          - 12
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node_version }}
+          node-version: "${{ matrix.node_version }}"
       - run: npm ci
       - run: npm test
