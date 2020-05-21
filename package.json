@@ -42,7 +42,7 @@
     "jest": "^26.0.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "semantic-release": "^17.0.0",
-    "ts-jest": "^25.1.0",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.6.4"
   },
   "jest": {
