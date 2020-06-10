@@ -38,7 +38,7 @@
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.9.1",
     "@pika/plugin-ts-standard-pkg": "^0.9.1",
-    "@types/jest": "^25.1.0",
+    "@types/jest": "^26.0.0",
     "jest": "^26.0.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "semantic-release": "^17.0.0",
