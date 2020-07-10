@@ -100,7 +100,9 @@ const requestWithAuth = request.defaults({
 const { data: authorizations } = await requestWithAuth("GET /authorizations");
 ```
 
-## Comparison
+## Official Strategies
+
+### Comparison
 
 <table>
   <thead align=left valign=top>
@@ -342,7 +344,7 @@ token
 </td></tr></tbody>
 </table>
 
-## Token authentication
+### Token authentication
 
 Example
 
@@ -353,7 +355,7 @@ const { token, tokenType } = await auth();
 
 See [@octokit/auth-token](https://github.com/octokit/auth-token.js#readme) for more details.
 
-## Basic and personal access token authentication
+### Basic and personal access token authentication
 
 Example
 
@@ -375,7 +377,7 @@ const { totp } = await auth({
 
 See [`@octokit/auth-basic`](https://github.com/octokit/auth-basic.js#readme) for more details.
 
-## GitHub App or installation authentication
+### GitHub App or installation authentication
 
 Example
 
@@ -394,7 +396,7 @@ const installationAuthentication = await auth({
 
 See [@octokit/auth-app](https://github.com/octokit/auth-app.js#readme) for more details.
 
-## OAuth app and OAuth access token authentication
+### OAuth app and OAuth access token authentication
 
 Example
 
@@ -414,7 +416,7 @@ const tokenAuthentication = await auth({ type: "token" });
 
 See [@octokit/auth-oauth-app](https://github.com/octokit/auth-oauth-app.js#readme) for more details.
 
-## GitHub Action authentication
+### GitHub Action authentication
 
 Example
 
@@ -425,6 +427,23 @@ const { token } = await auth();
 ```
 
 See [@octokit/auth-action](https://github.com/octokit/auth-action.js#readme) for more details.
+
+## Community Strategies
+
+### .netrc authentication
+
+Similar to [token authentication](#token-authentication), but reads the token from your `~/.netrc` file
+
+Example
+
+```js
+// expects a personal access token to be set as `login` in the `~/.netrc` file for `api.github.com`
+const { createNetrcAuth } = require('octokit-netrc-auth');
+const auth = createNetrcAuth();
+const { token } = await auth();
+```
+
+See [octokit-auth-netrc](https://github.com/travi/octokit-auth-netrc) for more details.
 
 ## License
 
