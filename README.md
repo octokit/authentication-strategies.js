@@ -10,12 +10,15 @@ GitHub supports 4 authentication strategies. They are all implemented in `@octok
 <!-- toc -->
 
 - [Example usage](#example-usage)
-- [Comparison](#comparison)
-- [Token authentication](#token-authentication)
-- [Basic and personal access token authentication](#basic-and-personal-access-token-authentication)
-- [GitHub App or installation authentication](#github-app-or-installation-authentication)
-- [OAuth app and OAuth access token authentication](#oauth-app-and-oauth-access-token-authentication)
-- [GitHub Action authentication](#github-action-authentication)
+- [Official Strategies](#official-strategies)
+  - [Comparison](#comparison)
+  - [Token authentication](#token-authentication)
+  - [Basic and personal access token authentication](#basic-and-personal-access-token-authentication)
+  - [GitHub App or installation authentication](#github-app-or-installation-authentication)
+  - [OAuth app and OAuth access token authentication](#oauth-app-and-oauth-access-token-authentication)
+  - [GitHub Action authentication](#github-action-authentication)
+- [Community Strategies](#community-strategies)
+  - [.netrc authentication](#netrc-authentication)
 - [License](#license)
 
 <!-- tocstop -->
@@ -438,7 +441,7 @@ Example
 
 ```js
 // expects a personal access token to be set as `login` in the `~/.netrc` file for `api.github.com`
-const { createNetrcAuth } = require('octokit-netrc-auth');
+const { createNetrcAuth } = require("octokit-netrc-auth");
 const auth = createNetrcAuth();
 const { token } = await auth();
 ```
