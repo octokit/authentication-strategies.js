@@ -243,7 +243,7 @@ token
   type: "app",
   token: "abc.def.1234",
   appId: 123,
-  expriseAt: "2019-06-11T22:22:34Z"
+  expiresAt: "2019-06-11T22:22:34Z"
 }
 ```
 
@@ -255,7 +255,7 @@ token
   tokenType: "installation",
   token: "v1.secret123",
   installationId: 1234,
-  expriseAt: "2019-06-11T22:22:34Z",
+  expiresAt: "2019-06-11T22:22:34Z",
   repositoryIds: [12345],
   permissions: {
     single_file: 'write'
