@@ -45,6 +45,7 @@ Load `@octokit/auth` directly from [cdn.pika.dev](https://cdn.pika.dev)
 ```
 
 </td></tr>
+<tr><!-- Skip gray background row --></tr>
 <tr><th>
 Node
 </th><td>
@@ -143,6 +144,7 @@ token
 ```
 
 </td></tr>
+<tr><!-- Skip gray background row --></tr>
 <tr><td>
 
 `@octokit/auth-basic`
@@ -208,6 +210,7 @@ token
 ```
 
 </td></tr>
+<tr><!-- Skip gray background row --></tr>
 <tr><td>
 
 `@octokit/auth-app`
@@ -265,6 +268,7 @@ token
 ```
 
 </td></tr>
+<tr><!-- Skip gray background row --></tr>
 <tr><td>
 
 `@octokit/auth-oauth-app`
@@ -318,6 +322,7 @@ token
 ```
 
 </td></tr>
+<tr><!-- Skip gray background row --></tr>
 <tr><td>
 
 `@octokit/auth-action`
