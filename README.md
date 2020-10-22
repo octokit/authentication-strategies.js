@@ -31,7 +31,7 @@ GitHub supports 4 authentication strategies. They are all implemented in `@octok
 Browsers
 </th><td width=100%>
 
-Load `@octokit/auth` directly from [cdn.pika.dev](https://cdn.pika.dev)
+Load `@octokit/auth` directly from [cdn.skypack.dev](https://cdn.skypack.dev)
 
 ```html
 <script type="module">
@@ -40,7 +40,7 @@ Load `@octokit/auth` directly from [cdn.pika.dev](https://cdn.pika.dev)
     createAppAuth,
     createOAuthAppAuth,
     createTokenAuth,
-  } from "https://cdn.pika.dev/@octokit/auth";
+  } from "https://cdn.skypack.dev/@octokit/auth";
 </script>
 ```
 
