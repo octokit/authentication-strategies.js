@@ -13,7 +13,6 @@ GitHub supports 4 authentication strategies. They are all implemented in `@octok
 - [Official Strategies](#official-strategies)
   - [Comparison](#comparison)
   - [Token authentication](#token-authentication)
-  - [Basic and personal access token authentication](#basic-and-personal-access-token-authentication)
   - [GitHub App or installation authentication](#github-app-or-installation-authentication)
   - [OAuth app and OAuth access token authentication](#oauth-app-and-oauth-access-token-authentication)
   - [GitHub Action authentication](#github-action-authentication)
@@ -36,7 +35,6 @@ Load `@octokit/auth` directly from [cdn.skypack.dev](https://cdn.skypack.dev)
 ```html
 <script type="module">
   import {
-    createBasicAuth,
     createAppAuth,
     createOAuthAppAuth,
     createTokenAuth,
@@ -53,7 +51,6 @@ Install with <code>npm install @octokit/auth</code>
 
 ```js
 const {
-  createBasicAuth,
   createAppAuth,
   createOAuthAppAuth,
   createTokenAuth,
@@ -61,7 +58,6 @@ const {
 } = require("@octokit/auth");
 // or:
 // import {
-//   createBasicAuth,
 //   createAppAuth,
 //   createOAuthAppAuth,
 //   createTokenAuth,
@@ -74,12 +70,9 @@ const {
 </table>
 
 ```js
-const auth = createBasicAuth({
-  username: "monatheoctocat",
-  password: "secret",
-  on2Fa() {
-    return prompt("Two-factor authentication Code:");
-  },
+const auth = createAppAuth({
+  appId: 12345,
+  privateKey: "...",
 });
 ```
 
@@ -88,7 +81,7 @@ Each function exported by `@octokit/auth` returns an async `auth` function.
 The `auth` function resolves with an authentication object. If multiple authentication types are supported, a `type` parameter can be passed.
 
 ```js
-const { token } = await auth({ type: "token" });
+const { token } = await auth({ type: "app" });
 ```
 
 Additionally, `auth.hook()` can be used to directly hook into [`@octokit/request`](https://github.com/octokit/request.js#readme). If multiple authentication types are supported, the right authentication type will be applied automatically based on the request URL.
@@ -139,71 +132,6 @@ token
   type: "token",
   token: "secret123",
   tokenType, "oauth" // or "installation"
-}
-```
-
-</td></tr>
-<tr><td>
-
-`@octokit/auth-basic`
-
-</td><td>
-
-```
-{
-  username*,
-  password*,
-  on2Fa*,
-  token,
-  request
-}
-```
-
-</td><td>
-
-```
-{
-  type*, // "basic" or "token"
-  refresh
-}
-```
-
-</td><td>
-
-```
-{
-  type: "basic"
-  username: "octocat",
-  password: "secret",
-  credentials: "b2N0b2NhdDpzZWNyZXQ=",
-  totp: "123456"
-}
-```
-
-</td><td>
-
-```
-{
-  type: "token"
-  tokenType: "pat",
-  token: "secret123",
-  id: 123,
-  username: "octocat",
-  scopes: []
-}
-```
-
-</td><td>
-
-```
-{
-  type: "token"
-  tokenType: "oauth",
-  token: "secret123",
-  id: 123,
-  appClientId: "abc123",
-  username: "octocat",
-  scopes: []
 }
 ```
 
@@ -358,35 +286,13 @@ const { token, tokenType } = await auth();
 
 See [@octokit/auth-token](https://github.com/octokit/auth-token.js#readme) for more details.
 
-### Basic and personal access token authentication
-
-Example
-
-```js
-const auth = createBasicAuth({
-  username: "octocat",
-  password: "secret",
-  async on2Fa() {
-    // prompt user for the one-time password retrieved via SMS or authenticator app
-    return prompt("Two-factor authentication Code:");
-  },
-});
-
-const { token } = await auth();
-const { totp } = await auth({
-  type: "basic",
-});
-```
-
-See [`@octokit/auth-basic`](https://github.com/octokit/auth-basic.js#readme) for more details.
-
 ### GitHub App or installation authentication
 
 Example
 
 ```js
 const auth = createAppAuth({
-  id: 1,
+  appId: 1,
   privateKey: "-----BEGIN RSA PRIVATE KEY-----\n...",
 });
 

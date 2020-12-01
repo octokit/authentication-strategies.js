@@ -27,11 +27,10 @@
     "@octokit/auth-action": "./pkg/dist-src/auth-action-browser.js"
   },
   "dependencies": {
-    "@octokit/auth-action": "^1.1.0",
-    "@octokit/auth-app": "^2.4.0",
-    "@octokit/auth-basic": "^1.3.0",
-    "@octokit/auth-oauth-app": "^3.0.0",
-    "@octokit/auth-token": "^2.4.0"
+    "@octokit/auth-action": "^1.3.1",
+    "@octokit/auth-app": "^2.10.3",
+    "@octokit/auth-oauth-app": "^3.0.7",
+    "@octokit/auth-token": "^2.4.4"
   },
   "devDependencies": {
     "@gr2m/pika-plugin-build-web": "^0.6.0-issue-84.2",
