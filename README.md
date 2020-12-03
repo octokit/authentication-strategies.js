@@ -318,7 +318,7 @@ const auth = createOAuthAppAuth({
 
 const appAuthentication = await auth({
   type: "oauth-app",
-  url: "/orgs/:org/repos",
+  url: "/orgs/{org}/repos",
 });
 const tokenAuthentication = await auth({ type: "token" });
 ```
