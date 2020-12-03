@@ -33,10 +33,10 @@
     "@octokit/auth-token": "^2.4.4"
   },
   "devDependencies": {
-    "@gr2m/pika-plugin-build-web": "^0.6.0-issue-84.2",
     "@pika/pack": "^0.5.0",
-    "@pika/plugin-build-node": "^0.9.1",
-    "@pika/plugin-ts-standard-pkg": "^0.9.1",
+    "@pika/plugin-build-node": "^0.9.0",
+    "@pika/plugin-build-web": "^0.9.0",
+    "@pika/plugin-ts-standard-pkg": "^0.9.0",
     "@types/jest": "^26.0.0",
     "jest": "^26.0.1",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -64,7 +64,7 @@
         "@pika/plugin-build-node"
       ],
       [
-        "@gr2m/pika-plugin-build-web"
+        "@pika/plugin-build-web"
       ]
     ]
   },
