@@ -1,4 +1,4 @@
-# auth.js
+# authentication-strategies.js
 
 > GitHub API authentication strategies for Browsers, Node.js, and Deno
 
