@@ -210,7 +210,8 @@ const appOctokit = new Octokit({
 const installationOctokit = appOctokit.auth({
   type: "installation",
   installationId,
-  factory: ({ octokitOptions, ...auth }) => new Octokit({ ...octokitOptions, auth }),
+  factory: ({ octokitOptions, ...auth }) =>
+    new Octokit({ ...octokitOptions, auth }),
 });
 ```
 
