@@ -31,7 +31,7 @@
 
 **Module**: [`@octokit/auth-token`](https://github.com/octokit/auth-token.js#readme)
 
-The simplest authentication strategy requires a user to create a personal access token at https://github.com/settings/tokens/new and pass it as the single argument to the `createTokenAuth()` function. You can pass in any other token such as an installation access token or a OAuth user access token, but there are dedicated startegies for the respective use cases which might be a better fit.
+The simplest authentication strategy requires a user to create a personal access token at https://github.com/settings/tokens/new and pass it as the single argument to the `createTokenAuth()` function. You can pass in any other token such as an installation access token or a OAuth user access token, but there are dedicated strategies for the respective use cases which might be a better fit.
 
 `@octokit/auth-token` is the default authentication strategy built into [`@octokit/core`](https://github.com/octokit/core.js/#authentication)
 
@@ -115,7 +115,7 @@ This authentication strategy is useful to provide a helpful error message when n
 
 **Module**: [`@octokit/auth-callback`](https://github.com/octokit/auth-callback.js#readme)
 
-This authentication strategy accepts a single `{ callback }` startegy option which returns either a falsy value or the string for a valid token. It's great for single-page web applications where a user can sign in/sign out without the need to re-instantiate a new `octokit` instance each time.
+This authentication strategy accepts a single `{ callback }` strategy option which returns either a falsy value or the string for a valid token. It's great for single-page web applications where a user can sign in/sign out without the need to re-instantiate a new `octokit` instance each time.
 
 ### .netrc
 
