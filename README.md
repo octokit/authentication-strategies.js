@@ -74,7 +74,7 @@ There are differences between [OAuth Apps](https://docs.github.com/en/developers
 
 **Module**: [`@octokit/auth-oauth-user`](https://github.com/octokit/auth-oauth-user.js#readme)
 
-OAuth user authentication be created by both OAuth Apps and GitHub Apps. OAuth Apps create OAuth user access tokens which are granted a set of scopes at the time of creation. GitHub apps create user-to-server tokens which authenticate as both a user and the app/installation. It can be created using the [OAuth web flow](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/#web-application-flow) or [OAuth Device flow](https://docs.github.com/en/developers/apps/authorizing-oauth-apps#device-flow)
+OAuth user authentication can be created by both OAuth Apps and GitHub Apps. OAuth Apps create OAuth user access tokens which are granted a set of scopes at the time of creation. GitHub apps create user-to-server tokens which authenticate as both a user and the app/installation. It can be created using the [OAuth web flow](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/#web-application-flow) or [OAuth Device flow](https://docs.github.com/en/developers/apps/authorizing-oauth-apps#device-flow)
 
 There are differences between [OAuth Apps](https://docs.github.com/en/developers/apps/building-oauth-apps) and the OAuth features from [GitHub Apps](https://docs.github.com/en/developers/apps/building-github-apps), see the list in [OAuth app authentication](#oauth-app-authentication).
 
